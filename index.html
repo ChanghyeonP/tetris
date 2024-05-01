@@ -473,6 +473,11 @@
       setNextPiece();
     }
 
+    function hardDrop() {
+      while (move(DIR.DOWN)) { } // 아래로 이동할 수 없을 때까지 계속해서 이동
+      drop(); // 이동이 끝나면 도형을 떨어뜨립니다.
+    }
+
     function update(idt) {
       if (playing) {
         if (vscore < score)
