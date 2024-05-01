@@ -478,6 +478,24 @@
       drop(); // 이동이 끝나면 도형을 떨어뜨립니다.
     }
 
+    function flipPiece() {
+      var type = current.type;
+      var newBlocks = [];
+      for (var i = 0; i < type.blocks.length; i++) {
+        newBlocks.push(flipBlock(type.blocks[i]));
+      }
+      current.type.blocks = newBlocks;
+      invalidate();
+    }
+
+    function flipBlock(block) {
+      var result = 0;
+      for (var i = 0; i < 4; i++) {
+        result |= ((block >> (i * 4)) & 0xF) << ((3 - i) * 4);
+      }
+      return result;
+    }
+
     function update(idt) {
       if (playing) {
         if (vscore < score)
